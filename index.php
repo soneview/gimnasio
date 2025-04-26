@@ -10,7 +10,7 @@ require_once 'config/db.php';
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h1>Alcanza tu mejor versión con GymFitPro</h1>
+                <h1>Alcanza tu mejor versión con Vitaminadaspor</h1>
                 <p class="lead">Entrenadores profesionales, horarios flexibles y planes personalizados para ayudarte a lograr tus objetivos fitness.</p>
                 <a href="planes.php" class="btn btn-primary btn-lg">Ver Planes</a>
                 <a href="auth/register.php" class="btn btn-outline-light btn-lg ms-2">Registrarse</a>
