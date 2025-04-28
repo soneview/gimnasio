@@ -1,9 +1,9 @@
-/* Estilos personalizados para GymFitPro */
+/* Estilos personalizados para Vitaminada Spor y GYM */
 
 /* Generales */
 body {
     font-family: 'Roboto', sans-serif;
-    color: #333;
+    color: rgb(6, 136, 6);
     line-height: 1.6;
 }
 
@@ -21,7 +21,7 @@ body {
     font-weight: 700;
     position: relative;
     margin-bottom: 15px;
-    color: #343a40;
+    color: #13304d;
 }
 
 .section-title p {
