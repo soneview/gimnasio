@@ -32,11 +32,6 @@ require_once 'config/db.php';
                             <h4 class="card-title"><?php echo $servicio['nombre']; ?></h4>
                             <p class="card-text"><?php echo $servicio['descripcion']; ?></p>
                             <p><strong>Duración:</strong> <?php echo $servicio['duracion_minutos']; ?> minutos</p>
-                            <?php if(isset($_SESSION['user_id'])): ?>
-                                <a href="cliente/reservar_servicio.php?id=<?php echo $servicio['id']; ?>" class="btn btn-primary">Reservar Ahora</a>
-                            <?php else: ?>
-                                <a href="auth/login.php" class="btn btn-primary">Iniciar Sesión para Reservar</a>
-                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
