@@ -199,36 +199,49 @@ function getDiaSemana($dia) {
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header bg-success text-white">
-                            <h5 class="mb-0">Suscripciones Activas</h5>
+                            <h5 class="mb-0"><i class="fas fa-credit-card me-2"></i> Suscripciones Activas</h5>
                         </div>
                         <div class="card-body">
                             <?php if ($suscripciones->num_rows > 0): ?>
-                                <div class="table-responsive">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>Plan</th>
-                                                <th>Descripción</th>
-                                                <th>Inicio</th>
-                                                <th>Fin</th>
-                                                <th>Precio</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php while ($suscripcion = $suscripciones->fetch_assoc()): ?>
-                                                <tr>
-                                                    <td><?php echo $suscripcion['plan_nombre']; ?></td>
-                                                    <td><?php echo substr($suscripcion['plan_descripcion'], 0, 50) . '...'; ?></td>
-                                                    <td><?php echo date('d/m/Y', strtotime($suscripcion['fecha_inicio'])); ?></td>
-                                                    <td><?php echo date('d/m/Y', strtotime($suscripcion['fecha_fin'])); ?></td>
-                                                    <td>$<?php echo number_format($suscripcion['precio'], 2); ?></td>
-                                                </tr>
-                                            <?php endwhile; ?>
-                                        </tbody>
-                                    </table>
+                                <div class="row">
+                                    <?php while ($suscripcion = $suscripciones->fetch_assoc()): 
+                                        $diasRestantes = ceil((strtotime($suscripcion['fecha_fin']) - time()) / (60 * 60 * 24));
+                                    ?>
+                                    <div class="col-md-12 mb-3">
+                                        <div class="subscription-card p-3 border rounded">
+                                            <div class="row align-items-center">
+                                                <div class="col-md-3">
+                                                    <h5 class="mb-0"><?php echo htmlspecialchars($suscripcion['plan_nombre']); ?></h5>
+                                                    <span class="badge bg-success">Activa</span>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <small class="text-muted d-block">Vigencia:</small>
+                                                    <span><?php echo date('d/m/Y', strtotime($suscripcion['fecha_inicio'])); ?> - <?php echo date('d/m/Y', strtotime($suscripcion['fecha_fin'])); ?></span>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <small class="text-muted d-block">Precio:</small>
+                                                    <strong>$<?php echo number_format($suscripcion['precio'], 2); ?></strong>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="text-center">
+                                                        <span class="d-block"><?php echo $diasRestantes; ?> días</span>
+                                                        <small class="text-muted">restantes</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 text-end">
+                                                    <a href="suscripciones.php" class="btn btn-sm btn-outline-primary">Detalles</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php endwhile; ?>
                                 </div>
                             <?php else: ?>
-                                <p class="text-center">No tienes suscripciones activas. <a href="../planes.php">Adquiere un plan</a>.</p>
+                                <div class="alert alert-info text-center">
+                                    <i class="fas fa-info-circle fa-2x mb-3"></i>
+                                    <p>No tienes suscripciones activas.</p>
+                                    <a href="../planes.php" class="btn btn-primary btn-sm mt-2">Ver planes disponibles</a>
+                                </div>
                             <?php endif; ?>
                         </div>
                         <div class="card-footer text-end">
@@ -237,6 +250,19 @@ function getDiaSemana($dia) {
                     </div>
                 </div>
             </div>
+            
+            <!-- Estilos para las tarjetas de suscripción -->
+            <style>
+            .subscription-card {
+                transition: all 0.3s ease;
+                background-color: #fff;
+            }
+            
+            .subscription-card:hover {
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                transform: translateY(-2px);
+            }
+            </style>
         </div>
     </div>
 </div>
