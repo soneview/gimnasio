@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-04-2025 a las 04:29:33
+-- Tiempo de generación: 01-05-2025 a las 07:36:18
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -62,6 +62,27 @@ CREATE TABLE `horarios` (
   `capacidad_maxima` int(11) DEFAULT 1,
   `estado` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `password_reset_tokens`
+--
+
+CREATE TABLE `password_reset_tokens` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `expires` datetime NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `password_reset_tokens`
+--
+
+INSERT INTO `password_reset_tokens` (`id`, `user_id`, `token`, `expires`, `created_at`) VALUES
+(2, 12, '6906ef906e09b9f7cbd880e3468c6a0078a4d3ebe9bbae21801f2091e14e399b', '2025-04-30 01:00:12', '2025-04-29 22:00:13');
 
 -- --------------------------------------------------------
 
@@ -187,7 +208,10 @@ INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `password`, `telefo
 (4, 'Juan', 'Perez', 'juan@gymfitpro.com', '$2y$10$l5/0Ce9TJE.CcNMMLPnAn.ml/YHtqPMr4A5ADdCf3ngfNYTmW5AGW', '111222333', '2025-04-22 21:05:23', 2, 1),
 (5, 'Maria', 'Lopez', 'maria@gymfitpro.com', '$2y$10$l5/0Ce9TJE.CcNMMLPnAn.ml/YHtqPMr4A5ADdCf3ngfNYTmW5AGW', '444555666', '2025-04-22 21:05:23', 2, 1),
 (6, 'Pedro', 'Gomez', 'pedro@gymfitpro.com', '$2y$10$l5/0Ce9TJE.CcNMMLPnAn.ml/YHtqPMr4A5ADdCf3ngfNYTmW5AGW', '777888999', '2025-04-22 21:05:23', 2, 1),
-(7, 'Ana', 'Martinez', 'ana@mail.com', '$2y$10$l5/0Ce9TJE.CcNMMLPnAn.ml/YHtqPMr4A5ADdCf3ngfNYTmW5AGW', '111333555', '2025-04-22 21:05:24', 3, 1);
+(7, 'Ana', 'Martinez', 'ana@mail.com', '$2y$10$l5/0Ce9TJE.CcNMMLPnAn.ml/YHtqPMr4A5ADdCf3ngfNYTmW5AGW', '111333555', '2025-04-22 21:05:24', 3, 1),
+(10, 'luis', 'barrios', 'luis.alejandro200@gmail.com', '$2y$12$J9798vqM2n082xy0Qc82feQMycCEZjrddJKveEhX4Ei8FRRUbsF8a', '0412949575', '2025-04-29 23:39:57', 3, 1),
+(11, 'emilior', 'soto', 'emilio.soto2002@gmail.com', '$2y$12$TfK77MMVNioZfQflW7onX.xFNYnjCze9QEG8TBCr43IHHmdiRR4Xa', '0412949575', '2025-04-29 23:43:51', 3, 1),
+(12, 'luis', 'barrios', 'luis.alejandrobarrios200209@gmail.com', '$2y$12$ivzIA9nhIfC3QGf1yoYOSeM5SAJJ6jIwqL4V91LD28p4Rr8Ig/ZIa', '0424847611', '2025-04-29 23:54:57', 3, 1);
 
 --
 -- Índices para tablas volcadas
@@ -207,6 +231,13 @@ ALTER TABLE `horarios`
   ADD PRIMARY KEY (`id`),
   ADD KEY `entrenador_id` (`entrenador_id`),
   ADD KEY `servicio_id` (`servicio_id`);
+
+--
+-- Indices de la tabla `password_reset_tokens`
+--
+ALTER TABLE `password_reset_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indices de la tabla `planes`
@@ -267,6 +298,12 @@ ALTER TABLE `horarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `password_reset_tokens`
+--
+ALTER TABLE `password_reset_tokens`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `planes`
 --
 ALTER TABLE `planes`
@@ -300,7 +337,7 @@ ALTER TABLE `suscripciones`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restricciones para tablas volcadas
@@ -318,6 +355,12 @@ ALTER TABLE `entrenadores`
 ALTER TABLE `horarios`
   ADD CONSTRAINT `horarios_ibfk_1` FOREIGN KEY (`entrenador_id`) REFERENCES `entrenadores` (`id`),
   ADD CONSTRAINT `horarios_ibfk_2` FOREIGN KEY (`servicio_id`) REFERENCES `servicios` (`id`);
+
+--
+-- Filtros para la tabla `password_reset_tokens`
+--
+ALTER TABLE `password_reset_tokens`
+  ADD CONSTRAINT `password_reset_tokens_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `reservas`

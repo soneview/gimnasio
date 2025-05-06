@@ -1,0 +1,30 @@
+{
+    "name": "vitaminada-sport/gimnasio",
+    "description": "Sistema de gestión para el gimnasio Vitaminada Sport",
+    "require": {
+        "php": ">=7.4",
+        "mpdf/mpdf": "^8.1",
+        "vlucas/phpdotenv": "^5.5",
+        "phpmailer/phpmailer": "^6.8",
+        "braintree/braintree_php": "^6.0",
+        "stripe/stripe-php": "^10.9",
+        "firebase/php-jwt": "^6.4",
+        "monolog/monolog": "^3.3",
+        "symfony/http-foundation": "^6.3",
+        "symfony/http-client": "^6.3",
+        "symfony/validator": "^6.3",
+        "symfony/console": "^6.3",
+        "doctrine/orm": "^2.14"
+    },
+    "autoload": {
+        "psr-4": {
+            "VitaminadaSport\\": "src/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

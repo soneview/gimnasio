@@ -5,6 +5,9 @@ require_once 'config/db.php';
 
 <?php include 'includes/header.php'; ?>
 
+<!-- Estilos específicos para planes -->
+<link rel="stylesheet" href="assets/css/planes.css">
+
 <!-- Cabecera de Planes -->
 <section class="bg-dark text-white py-5">
     <div class="container text-center">
@@ -17,43 +20,158 @@ require_once 'config/db.php';
 <section class="section-padding">
     <div class="container">
         <div class="row">
-            <?php
-            $conn = connectDB();
-            $query = "SELECT * FROM planes WHERE estado = 1";
-            $result = $conn->query($query);
-            
-            if ($result->num_rows > 0) {
-                while ($plan = $result->fetch_assoc()) {
-            ?>
-                <div class="col-md-4 mb-4">
-                    <div class="plan-card h-100">
-                        <h3><?php echo $plan['nombre']; ?></h3>
-                        <div class="plan-price">$<?php echo number_format($plan['precio'], 2); ?></div>
-                        <p><?php echo $plan['descripcion']; ?></p>
-                        <p><strong>Duración:</strong> <?php echo $plan['duracion_dias']; ?> días</p>
-                        <div class="mt-auto">
-                            <?php if(isset($_SESSION['user_id'])): ?>
-                                <a href="cliente/adquirir_plan.php?id=<?php echo $plan['id']; ?>" class="btn btn-primary">Adquirir Plan</a>
-                            <?php else: ?>
-                                <a href="auth/login.php" class="btn btn-primary">Inicia Sesión para Adquirir</a>
-                            <?php endif; ?>
+            <div class="col-12 text-center mb-5">
+                <h2 class="display-4 fw-bold">Selecciona tu plan</h2>
+                <p class="lead">Elige la opción que mejor se adapte a tus objetivos y presupuesto</p>
+            </div>
+
+            <div class="row justify-content-center plan-cards">
+                <!-- Plan Mensual -->
+                <div class="col-md-4 mb-4 plan-card-animation">
+                    <div class="card h-100 shadow-lg border-0 plan-card">
+                        <div class="card-header bg-primary text-white text-center py-3">
+                            <h3 class="mb-0">Mensual</h3>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <div class="text-center mb-4">
+                                <h2 class="card-price">$50</h2>
+                                <p class="text-muted">5.000 Bs</p>
+                            </div>
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Acceso completo al gimnasio</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Asesoría de entrenadores</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Acceso a clases grupales</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Evaluación física inicial</li>
+                            </ul>
+                            <div class="mt-auto text-center">
+                                <?php if(isset($_SESSION['user_id'])): ?>
+                                    <a href="views/pago_membresia.php?plan=1" class="btn btn-primary btn-lg w-100">Adquirir Plan</a>
+                                <?php else: ?>
+                                    <a href="auth/login.php" class="btn btn-primary btn-lg w-100">Inicia Sesión para Adquirir</a>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
                 </div>
-            <?php
-                }
-            } else {
-            ?>
-                <div class="col-12 text-center">
-                    <p>No hay planes disponibles en este momento.</p>
+
+                <!-- Plan Trimestral -->
+                <div class="col-md-4 mb-4 plan-card-animation">
+                    <div class="card h-100 shadow-lg border-0 plan-card featured">
+                        <div class="card-header bg-success text-white text-center py-3">
+                            <h3 class="mb-0">Trimestral</h3>
+                            <span class="badge bg-warning text-dark position-absolute top-0 end-0 mt-2 me-2">Popular</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <div class="text-center mb-4">
+                                <h2 class="card-price">$150</h2>
+                                <p class="text-muted">150.000 Bs</p>
+                                <p class="text-success"><small>Ahorra un 10%</small></p>
+                            </div>
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Acceso completo al gimnasio</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Asesoría de entrenadores</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Acceso a clases grupales</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Evaluación física mensual</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Plan nutricional básico</li>
+                            </ul>
+                            <div class="mt-auto text-center">
+                                <?php if(isset($_SESSION['user_id'])): ?>
+                                    <a href="views/pago_membresia.php?plan=2" class="btn btn-success btn-lg w-100">Adquirir Plan</a>
+                                <?php else: ?>
+                                    <a href="auth/login.php" class="btn btn-success btn-lg w-100">Inicia Sesión para Adquirir</a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            <?php
-            }
-            $conn->close();
-            ?>
+
+                <!-- Plan Anual -->
+                <div class="col-md-4 mb-4 plan-card-animation">
+                    <div class="card h-100 shadow-lg border-0 plan-card">
+                        <div class="card-header bg-dark text-white text-center py-3">
+                            <h3 class="mb-0">Anual</h3>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <div class="text-center mb-4">
+                                <h2 class="card-price">$500</h2>
+                                <p class="text-muted">500.000 Bs</p>
+                                <p class="text-success"><small>Ahorra un 20%</small></p>
+                            </div>
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Acceso completo al gimnasio</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Asesoría de entrenadores premium</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Acceso a todas las clases</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Evaluación física trimestral</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Plan nutricional completo</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>2 sesiones de entrenamiento personal</li>
+                            </ul>
+                            <div class="mt-auto text-center">
+                                <?php if(isset($_SESSION['user_id'])): ?>
+                                    <a href="views/pago_membresia.php?plan=3" class="btn btn-dark btn-lg w-100">Adquirir Plan</a>
+                                <?php else: ?>
+                                    <a href="auth/login.php" class="btn btn-dark btn-lg w-100">Inicia Sesión para Adquirir</a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Obtener todos los botones de tipo de plan
+    const planButtons = document.querySelectorAll('[data-plan]');
+    const planesContainer = document.getElementById('planes-container');
+
+    // Función para cargar los planes
+    function cargarPlanes(tipo) {
+        fetch(`api/planes.php?tipo=${tipo}`)
+            .then(response => response.json())
+            .then(planes => {
+                planesContainer.innerHTML = '';
+                planes.forEach(plan => {
+                    const col = document.createElement('div');
+                    col.className = 'col-md-4 mb-4';
+                    col.innerHTML = `
+                        <div class="plan-card h-100">
+                            <h3>${plan.nombre}</h3>
+                            <div class="plan-price">$${plan.precio}</div>
+                            <p>${plan.descripcion}</p>
+                            <p><strong>Duración:</strong> ${plan.duracion} días</p>
+                            <div class="mt-auto">
+                                <?php if(isset($_SESSION['user_id'])): ?>
+                                    <a href="views/pago_membresia.php?plan=${plan.id}" class="btn btn-primary">Adquirir Plan</a>
+                                <?php else: ?>
+                                    <a href="auth/login.php" class="btn btn-primary">Inicia Sesión para Adquirir</a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    `;
+                    planesContainer.appendChild(col);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    // Event listener para los botones de tipo de plan
+    planButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remover clase active de todos los botones
+            planButtons.forEach(btn => btn.classList.remove('active'));
+            // Agregar clase active al botón clickeado
+            this.classList.add('active');
+            // Cargar los planes correspondientes
+            cargarPlanes(this.dataset.plan);
+        });
+    });
+
+    // Cargar planes mensuales por defecto
+    cargarPlanes('mensual');
+});
+</script>
 
 <!-- Beneficios de Membresía -->
 <section class="section-padding bg-light">
@@ -207,5 +325,31 @@ require_once 'config/db.php';
         <?php endif; ?>
     </div>
 </section>
+
+<!-- Script para animaciones al hacer scroll -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Función para animar elementos al hacer scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.plan-card-animation');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        
+        // Ejecutar la animación al cargar la página
+        animateOnScroll();
+        
+        // Ejecutar la animación al hacer scroll
+        window.addEventListener('scroll', animateOnScroll);
+    });
+</script>
 
 <?php include 'includes/footer.php'; ?>

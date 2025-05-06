@@ -33,7 +33,7 @@
             </div>
             <hr>
             <div class="text-center">
-                <p>&copy; <?php echo date('Y'); ?> GymFitPro. Todos los derechos reservados.</p>
+                <p>&copy; <?php echo date('Y'); ?> Vitaminada SPORT y GYM. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>

@@ -1,0 +1,83 @@
+/* Estilos para la sección de planes */
+.plan-card {
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.plan-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+.plan-card .card-header {
+    border-bottom: none;
+}
+
+.plan-card .card-price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.featured {
+    transform: scale(1.05);
+    z-index: 1;
+}
+
+.featured:hover {
+    transform: scale(1.08) translateY(-10px);
+}
+
+/* Animaciones */
+.plan-card-animation {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards;
+}
+
+.plan-card-animation:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.plan-card-animation:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.plan-card-animation:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+    .featured {
+        transform: scale(1);
+    }
+    
+    .featured:hover {
+        transform: translateY(-10px);
+    }
+}
+
+/* Animación al hacer scroll */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

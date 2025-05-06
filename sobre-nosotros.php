@@ -21,7 +21,7 @@ session_start();
             </div>
             <div class="col-md-6">
                 <h2>Nuestra Historia</h2>
-                <p>GymFitPro nació en 2015 con una visión clara: revolucionar la forma en que las personas abordan su salud y bienestar físico. Fundado por un grupo de entrenadores apasionados, GymFitPro comenzó como un pequeño estudio con la misión de ofrecer entrenamiento personalizado de alta calidad.</p>
+                <p>Vitaminada SPORT Y GYM nació en 2015 con una visión clara: revolucionar la forma en que las personas abordan su salud y bienestar físico. Fundado por un grupo de entrenadores apasionados, GymFitPro comenzó como un pequeño estudio con la misión de ofrecer entrenamiento personalizado de alta calidad.</p>
                 <p>Con el paso de los años, hemos crecido hasta convertirnos en un referente en el sector fitness, manteniendo siempre nuestra filosofía de atención personalizada y resultados medibles.</p>
                 <h3 class="mt-4">Nuestra Misión</h3>
                 <p>Nuestra misión es transformar vidas a través del ejercicio físico y hábitos saludables, ofreciendo programas personalizados y un seguimiento riguroso para garantizar que cada cliente alcance sus objetivos, independientemente de su punto de partida.</p>
@@ -165,7 +165,7 @@ session_start();
                     </div>
                     <h5>Marta Gómez</h5>
                     <p class="text-muted">Cliente desde 2018</p>
-                    <p>"GymFitPro cambió completamente mi enfoque sobre el fitness. Con la ayuda de mi entrenador personal logré perder 20kg en 8 meses de manera saludable y sostenible. ¡Lo recomiendo al 100%!"</p>
+                    <p>"Vitaminada SPORT GYM cambió completamente mi enfoque sobre el fitness. Con la ayuda de mi entrenador personal logré perder 20kg en 8 meses de manera saludable y sostenible. ¡Lo recomiendo al 100%!"</p>
                     <div class="rating text-warning">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
